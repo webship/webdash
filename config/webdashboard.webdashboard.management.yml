@@ -1,0 +1,59 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - display_builder.profile.default
+    - views.view.webdashboard_last_content
+    - views.view.who_s_online
+  module:
+    - ui_patterns
+    - views
+    - webdashboard
+id: management
+admin_label: Management
+category: General
+frontend: false
+weight: -5
+profile: default
+sources:
+  -
+    node_id: management_layout
+    source_id: component
+    source:
+      component:
+        component_id: 'webdashboard:dashboard_three_columns'
+        slots:
+          one:
+            sources:
+              -
+                node_id: management_content
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:node_statistics'
+                  'webdashboard_item:node_statistics':
+                    label: 'Site content'
+                    label_display: visible
+                    chart_type: pie
+          two:
+            sources:
+              -
+                node_id: management_recent_content
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:view_embed'
+                  'webdashboard_item:view_embed':
+                    label: 'Recent content'
+                    label_display: visible
+                    view: 'webdashboard_last_content:embed_1'
+          three:
+            sources:
+              -
+                node_id: management_who_s_online
+                source_id: block
+                source:
+                  plugin_id: 'views_block:who_s_online-who_s_online_block'
+                  'views_block:who_s_online-who_s_online_block':
+                    label: ''
+                    label_display: visible
+                    views_label: ''
+                    items_per_page: none

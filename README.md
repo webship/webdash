@@ -6,11 +6,13 @@ The default dashboards of the Webship site templates, built with
 
 - **Webmaster**: site status, who is online, a content chart and recent content. The default dashboard of site
   administrators.
-- **Editorial**: add content links, recent content, own drafts and own content. The default dashboard of
-  content editors.
+- **Editorial**: add content links, recent content, own drafts, content of other authors the editor edited and
+  own content. The default dashboard of content editors.
+- **Management**: a site content chart, recent content and who is online. Site administrators can view it; grant
+  its **Can view Management dashboard** permission to other roles.
 
 The **Dashboards** toolbar tab opens the dashboard with the lowest weight the user can view. Webmaster has weight
--20 and Editorial -10, so they come before other dashboards, which stay listed in the tab.
+-20, Editorial -10 and Management -5, so they come before other dashboards, which stay listed in the tab.
 
 Maintained by [Webship](https://www.drupal.org/project/webship). Used by the
 [Website Starter](https://www.drupal.org/project/website_starter),

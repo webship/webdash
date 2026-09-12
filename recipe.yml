@@ -24,7 +24,8 @@ config:
   actions:
     # The Dashboards toolbar tab opens the dashboard with the lowest weight the
     # user can view. Webmaster (-20) is the default of site administrators,
-    # Editorial (-10) the default of content editors.
+    # Editorial (-10) the default of content editors. Management (-5) is for
+    # site administrators, and for the roles given its permission.
     ?user.role.content_editor:
       grantPermissions:
         - 'can view editorial webdashboard'

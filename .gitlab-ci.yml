@@ -1,0 +1,59 @@
+################
+# GitLab CI for the Web Dashboard recipe (a drupal-recipe project).
+#
+# The drupal.org GitLab templates build a Drupal site with this recipe in
+# recipes/webdash, then run composer-lint and cspell. The `recipe` job below
+# installs Drupal and applies the recipe to prove that it applies.
+# Documentation: https://project.pages.drupalcode.org/gitlab_templates/
+################
+include:
+  - project: $_GITLAB_TEMPLATES_REPO
+    ref: $_GITLAB_TEMPLATES_REF
+    file:
+      - '/includes/include.drupalci.main.yml'
+      - '/includes/include.drupalci.variables.yml'
+      - '/includes/include.drupalci.workflows.yml'
+
+variables:
+  _TARGET_PHP: '8.4'
+  DRUPAL_CORE: &drupal_core '11.4.x-dev'
+  # No PHP, JavaScript, CSS or PHPUnit tests here: the recipe YAML is checked
+  # by applying the recipe.
+  SKIP_ESLINT: '1'
+  SKIP_PHPCS: '1'
+  SKIP_PHPSTAN: '1'
+  SKIP_PHPUNIT: '1'
+  SKIP_STYLELINT: '1'
+  _COMPOSER_YARN_INSTALL: '0'
+  # composer-lint and cspell must pass.
+  _ALL_VALIDATE_ALLOW_FAILURE: '0'
+
+composer:
+  variables:
+    # The composer job sets its own DRUPAL_CORE: use the global value.
+    DRUPAL_CORE: *drupal_core
+
+# Install Drupal, apply the recipe, and check the dashboards.
+recipe:
+  extends: .testing-job-base
+  needs: [composer]
+  # Only the database: no browser is needed.
+  services:
+    - name: $_CONFIG_DOCKERHUB_ROOT/$_TARGET_DB_TYPE-$_TARGET_DB_VERSION:$_TARGET_DB_IMAGE_TAG
+      alias: database
+  script:
+    - cd $CI_PROJECT_DIR
+    - test "$COMPOSER_END_CODE" = "0"
+    # Run the Drush PHP script directly: vendor/bin/drush is a shell proxy.
+    - export DRUSH="php -d memory_limit=-1 $CI_PROJECT_DIR/vendor/drush/drush/drush.php --root=$CI_PROJECT_DIR/$_WEB_ROOT"
+    - $DRUSH site:install minimal -y
+      --db-url=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE
+      --account-name=admin --account-pass=admin --site-name="$PROJECT_NAME"
+    # The Content editor role gets the Editorial dashboard permission.
+    - $DRUSH recipe $CI_PROJECT_DIR/$_WEB_ROOT/core/recipes/content_editor_role
+    - $DRUSH recipe $CI_PROJECT_DIR/recipes/$PROJECT_NAME
+    - $DRUSH status --fields=drupal-version,db-status
+    - $DRUSH config:get webdashboard.webdashboard.webmaster weight
+    - $DRUSH config:get webdashboard.webdashboard.editorial weight
+    - test "$($DRUSH config:get webdashboard.webdashboard.management weight --format=string)" = "-5"
+    - $DRUSH config:get user.role.content_editor permissions --format=yaml | grep -q "can view editorial webdashboard"

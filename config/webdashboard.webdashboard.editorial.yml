@@ -64,6 +64,15 @@ sources:
                     label_display: visible
                     view: 'webdash_drafts:embed_1'
               -
+                node_id: editorial_edited_content
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:view_embed'
+                  'webdashboard_item:view_embed':
+                    label: 'Content I edited'
+                    label_display: visible
+                    view: 'webdash_drafts:embed_2'
+              -
                 node_id: editorial_own_content
                 source_id: block
                 source:
