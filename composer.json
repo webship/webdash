@@ -1,12 +1,13 @@
 {
     "name": "drupal/webdash",
     "type": "drupal-recipe",
-    "description": "The default dashboards of the Webship site templates: a Webmaster dashboard for site administrators and an Editorial dashboard for content editors, built on the Dashboard module.",
+    "description": "The default dashboards of the Webship site templates, built with Display Builder: a Webmaster dashboard for site administrators and an Editorial dashboard for content editors.",
     "homepage": "https://www.drupal.org/project/webdash",
     "license": "GPL-2.0-or-later",
-    "keywords": ["Drupal", "recipe", "dashboard", "Webship"],
+    "keywords": ["Drupal", "recipe", "dashboard", "Display Builder", "Webship"],
     "require": {
-        "drupal/core": "~12",
-        "drupal/dashboard": "^2.2"
+        "drupal/core": "^11.4 || ^12",
+        "drupal/display_builder": "^1.0@beta",
+        "drupal/webdashboard": "~12.0@dev"
     }
 }

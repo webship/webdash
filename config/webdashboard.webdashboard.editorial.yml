@@ -1,0 +1,74 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - display_builder.profile.default
+    - views.view.webdash_drafts
+    - views.view.webdashboard_last_content
+  module:
+    - ui_patterns
+    - webdashboard
+id: editorial
+admin_label: Editorial
+category: General
+frontend: false
+weight: -10
+profile: default
+sources:
+  -
+    node_id: editorial_layout
+    source_id: component
+    source:
+      component:
+        component_id: 'webdashboard:dashboard_two_columns'
+        props:
+          reverse:
+            source_id: checkbox
+            source:
+              value: true
+        slots:
+          one:
+            sources:
+              -
+                node_id: editorial_add_content
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:add_content_menu'
+                  'webdashboard_item:add_content_menu':
+                    label: 'Add content'
+                    label_display: visible
+                    include_destination: false
+                    items:
+                      webpage:
+                        weight: 0
+                      webblog:
+                        weight: 1
+              -
+                node_id: editorial_recent_content
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:view_embed'
+                  'webdashboard_item:view_embed':
+                    label: 'Recent content'
+                    label_display: visible
+                    view: 'webdashboard_last_content:embed_1'
+          two:
+            sources:
+              -
+                node_id: editorial_drafts
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:view_embed'
+                  'webdashboard_item:view_embed':
+                    label: 'My drafts'
+                    label_display: visible
+                    view: 'webdash_drafts:embed_1'
+              -
+                node_id: editorial_own_content
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:view_embed'
+                  'webdashboard_item:view_embed':
+                    label: 'My content'
+                    label_display: visible
+                    view: 'webdashboard_last_content:embed_2'

@@ -1,27 +1,30 @@
 name: 'Web Dashboard'
-description: 'The default dashboards of the Webship site templates: a Webmaster dashboard for site administrators and an Editorial dashboard for content editors, built on the Dashboard module.'
+description: 'The default dashboards of the Webship site templates, built with Display Builder: a Webmaster dashboard for site administrators and an Editorial dashboard for content editors.'
 type: 'Administration'
 install:
   - node
   - user
   - views
-  - dashboard
+  - display_builder
+  - webdashboard
+  - webdashboard_views
 config:
   strict: false
   import:
-    # The views of the dashboards: optional config and the config of modules
-    # installed by a recipe are not created from the module config directories.
-    dashboard:
-      - views.view.dashboard_content
-    node:
-      - views.view.content_recent
+    # Optional config and the config entities of modules installed by a recipe
+    # are not created from the module config directories: the Display Builder
+    # profile of the dashboards and the views they embed.
+    display_builder:
+      - display_builder.profile.default
+      - filter.format.display_builder_html
+    webdashboard_views:
+      - views.view.webdashboard_last_content
     user:
       - views.view.who_s_online
   actions:
-    # The default dashboard of a user is the dashboard with the lowest weight
-    # the user can view. Webmaster (-20) is the default of site administrators,
-    # Editorial (-10) the default of content editors; other dashboards, like the
-    # Welcome dashboard of the Drupal CMS admin UI (0), follow as tabs.
+    # The Dashboards toolbar tab opens the dashboard with the lowest weight the
+    # user can view. Webmaster (-20) is the default of site administrators,
+    # Editorial (-10) the default of content editors.
     ?user.role.content_editor:
       grantPermissions:
-        - 'view editorial dashboard'
+        - 'can view editorial webdashboard'
