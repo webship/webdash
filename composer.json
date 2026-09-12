@@ -1,0 +1,12 @@
+{
+    "name": "drupal/webdash",
+    "type": "drupal-recipe",
+    "description": "The default dashboards of the Webship site templates: a Webmaster dashboard for site administrators and an Editorial dashboard for content editors, built on the Dashboard module.",
+    "homepage": "https://www.drupal.org/project/webdash",
+    "license": "GPL-2.0-or-later",
+    "keywords": ["Drupal", "recipe", "dashboard", "Webship"],
+    "require": {
+        "drupal/core": "~12",
+        "drupal/dashboard": "^2.2"
+    }
+}

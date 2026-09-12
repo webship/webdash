@@ -1,0 +1,75 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.content_recent
+    - views.view.dashboard_content
+  module:
+    - dashboard
+    - layout_builder
+    - views
+id: editorial
+label: Editorial
+description: 'Drafts, recently edited content and content of the current editor.'
+layout:
+  -
+    layout_id: layout_twocol_section
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+      column_widths: 50-50
+    components:
+      4f1c8a25-6e3d-4a9b-b7c1-5d8e9f4c1e05:
+        uuid: 4f1c8a25-6e3d-4a9b-b7c1-5d8e9f4c1e05
+        region: first
+        configuration:
+          id: 'views_block:dashboard_content-block_own_drafts'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 0
+        additional: {  }
+      8d5a2c36-7f4e-4b1c-9d2e-6e9f1a5d2f06:
+        uuid: 8d5a2c36-7f4e-4b1c-9d2e-6e9f1a5d2f06
+        region: first
+        configuration:
+          id: 'views_block:dashboard_content-block_edited_content'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 1
+        additional: {  }
+      1b9e4d47-8a5f-4c2d-a3e1-7f1a2b6e3a07:
+        uuid: 1b9e4d47-8a5f-4c2d-a3e1-7f1a2b6e3a07
+        region: second
+        configuration:
+          id: 'views_block:dashboard_content-block_own_recent_content'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 0
+        additional: {  }
+      6c3f5e58-9b6a-4d3e-b4f2-8a2b3c7f4b08:
+        uuid: 6c3f5e58-9b6a-4d3e-b4f2-8a2b3c7f4b08
+        region: second
+        configuration:
+          id: 'views_block:content_recent-block_1'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 1
+        additional: {  }
+    third_party_settings: {  }
+weight: -10
