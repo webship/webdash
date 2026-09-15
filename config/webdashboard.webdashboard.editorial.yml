@@ -43,6 +43,12 @@ sources:
                         weight: 0
                       webblog:
                         weight: 1
+                      webdoc:
+                        weight: 2
+                      product:
+                        weight: 3
+                      release:
+                        weight: 4
               -
                 node_id: editorial_recent_content
                 source_id: block

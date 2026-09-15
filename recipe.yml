@@ -29,3 +29,8 @@ config:
     ?user.role.content_editor:
       grantPermissions:
         - 'can view editorial webdashboard'
+    # After login, people who can view a dashboard land on theirs: the
+    # Editorial dashboard for content editors.
+    webdashboard.settings:
+      simpleConfigUpdate:
+        redirect_after_login: true

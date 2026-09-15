@@ -27,6 +27,8 @@ variables:
   _COMPOSER_YARN_INSTALL: '0'
   # composer-lint and cspell must pass.
   _ALL_VALIDATE_ALLOW_FAILURE: '0'
+  # Machine names of the Webship content types listed by the dashboards.
+  _CSPELL_WORDS: 'webdoc'
 
 composer:
   variables:
