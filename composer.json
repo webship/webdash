@@ -4,6 +4,13 @@
     "description": "The default dashboards of the Webship site templates, built with Display Builder: a Webmaster dashboard for site administrators and an Editorial dashboard for content editors.",
     "homepage": "https://www.drupal.org/project/webdash",
     "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Webship",
+            "homepage": "https://webship.co",
+            "role": "Maintainer"
+        }
+    ],
     "keywords": ["Drupal", "recipe", "dashboard", "Display Builder", "Webship"],
     "require": {
         "drupal/core": "^11.4 || ^12",
