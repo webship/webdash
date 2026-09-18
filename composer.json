@@ -15,6 +15,6 @@
     "require": {
         "drupal/core": "^11.4 || ^12",
         "drupal/display_builder": "^1.0@beta",
-        "drupal/webdashboard": "^1.0@dev"
+        "drupal/webdashboard": "^1.0"
     }
 }
