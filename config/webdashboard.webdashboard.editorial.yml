@@ -16,6 +16,22 @@ weight: -10
 profile: default
 sources:
   -
+    node_id: editorial_welcome
+    source_id: block
+    source:
+      plugin_id: 'webdashboard_item:welcome'
+      'webdashboard_item:welcome':
+        label: ''
+        label_display: '0'
+  -
+    node_id: editorial_overview
+    source_id: block
+    source:
+      plugin_id: 'webdashboard_item:site_overview'
+      'webdashboard_item:site_overview':
+        label: ''
+        label_display: '0'
+  -
     node_id: editorial_layout
     source_id: component
     source:

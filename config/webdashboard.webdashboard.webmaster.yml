@@ -17,6 +17,22 @@ weight: -20
 profile: default
 sources:
   -
+    node_id: webmaster_welcome
+    source_id: block
+    source:
+      plugin_id: 'webdashboard_item:welcome'
+      'webdashboard_item:welcome':
+        label: ''
+        label_display: '0'
+  -
+    node_id: webmaster_overview
+    source_id: block
+    source:
+      plugin_id: 'webdashboard_item:site_overview'
+      'webdashboard_item:site_overview':
+        label: ''
+        label_display: '0'
+  -
     node_id: webmaster_layout
     source_id: component
     source:
@@ -31,6 +47,16 @@ sources:
           one:
             sources:
               -
+                node_id: webmaster_add_content
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:add_content_menu'
+                  'webdashboard_item:add_content_menu':
+                    label: 'Add content'
+                    label_display: visible
+                    include_destination: false
+                    items: {  }
+              -
                 node_id: webmaster_site_status
                 source_id: block
                 source:
@@ -41,26 +67,26 @@ sources:
           two:
             sources:
               -
-                node_id: webmaster_who_s_online
-                source_id: block
-                source:
-                  plugin_id: 'views_block:who_s_online-who_s_online_block'
-                  'views_block:who_s_online-who_s_online_block':
-                    label: ''
-                    label_display: visible
-                    views_label: ''
-                    items_per_page: none
-          three:
-            sources:
-              -
                 node_id: webmaster_content
                 source_id: block
                 source:
                   plugin_id: 'webdashboard_item:node_statistics'
                   'webdashboard_item:node_statistics':
-                    label: Content
+                    label: 'Content by type'
                     label_display: visible
-                    chart_type: bar
+                    chart_type: doughnut
+              -
+                node_id: webmaster_who_s_online
+                source_id: block
+                source:
+                  plugin_id: 'views_block:who_s_online-who_s_online_block'
+                  'views_block:who_s_online-who_s_online_block':
+                    label: "Who's online"
+                    label_display: visible
+                    views_label: ''
+                    items_per_page: none
+          three:
+            sources:
               -
                 node_id: webmaster_recent_content
                 source_id: block
