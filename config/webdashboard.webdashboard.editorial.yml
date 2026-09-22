@@ -3,10 +3,10 @@ status: true
 dependencies:
   config:
     - display_builder.profile.default
-    - views.view.webdash_drafts
-    - views.view.webdashboard_last_content
+    - views.view.webdash_content
   module:
     - ui_patterns
+    - views
     - webdashboard
 id: editorial
 admin_label: Editorial
@@ -36,7 +36,7 @@ sources:
     source_id: component
     source:
       component:
-        component_id: 'webdashboard:dashboard_two_columns'
+        component_id: 'webdashboard:dashboard_two_one'
         props:
           reverse:
             source_id: checkbox
@@ -54,17 +54,37 @@ sources:
                     label: 'Add content'
                     label_display: visible
                     include_destination: false
-                    items:
-                      webpage:
-                        weight: 0
-                      webblog:
-                        weight: 1
-                      webdoc:
-                        weight: 2
-                      product:
-                        weight: 3
-                      release:
-                        weight: 4
+                    items: {  }
+              -
+                node_id: editorial_quick_tasks
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:quick_tasks'
+                  'webdashboard_item:quick_tasks':
+                    label: 'Quick tasks'
+                    label_display: visible
+          two:
+            sources: {  }
+          three:
+            sources:
+              -
+                node_id: editorial_my_drafts
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:view_embed'
+                  'webdashboard_item:view_embed':
+                    label: 'My drafts'
+                    label_display: visible
+                    view: 'webdash_content:block_my_drafts'
+              -
+                node_id: editorial_my_content
+                source_id: block
+                source:
+                  plugin_id: 'webdashboard_item:view_embed'
+                  'webdashboard_item:view_embed':
+                    label: 'My content'
+                    label_display: visible
+                    view: 'webdash_content:block_my_content'
               -
                 node_id: editorial_recent_content
                 source_id: block
@@ -73,33 +93,4 @@ sources:
                   'webdashboard_item:view_embed':
                     label: 'Recent content'
                     label_display: visible
-                    view: 'webdashboard_last_content:embed_1'
-          two:
-            sources:
-              -
-                node_id: editorial_drafts
-                source_id: block
-                source:
-                  plugin_id: 'webdashboard_item:view_embed'
-                  'webdashboard_item:view_embed':
-                    label: 'My drafts'
-                    label_display: visible
-                    view: 'webdash_drafts:embed_1'
-              -
-                node_id: editorial_edited_content
-                source_id: block
-                source:
-                  plugin_id: 'webdashboard_item:view_embed'
-                  'webdashboard_item:view_embed':
-                    label: 'Content I edited'
-                    label_display: visible
-                    view: 'webdash_drafts:embed_2'
-              -
-                node_id: editorial_own_content
-                source_id: block
-                source:
-                  plugin_id: 'webdashboard_item:view_embed'
-                  'webdashboard_item:view_embed':
-                    label: 'My content'
-                    label_display: visible
-                    view: 'webdashboard_last_content:embed_2'
+                    view: 'webdash_content:block_recent'

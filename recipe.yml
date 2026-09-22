@@ -7,18 +7,15 @@ install:
   - views
   - display_builder
   - webdashboard
-  - webdashboard_views
 config:
   strict: false
   import:
     # Optional config and the config entities of modules installed by a recipe
     # are not created from the module config directories: the Display Builder
-    # profile of the dashboards and the views they embed.
+    # profile of the dashboards and the Who's online view.
     display_builder:
       - display_builder.profile.default
       - filter.format.display_builder_html
-    webdashboard_views:
-      - views.view.webdashboard_last_content
     user:
       - views.view.who_s_online
   actions:
