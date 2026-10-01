@@ -12,12 +12,11 @@ config:
   import:
     # Optional config and the config entities of modules installed by a recipe
     # are not created from the module config directories: the Display Builder
-    # profile of the dashboards and the Who's online view.
+    # profile of the dashboards. The Who's online view ships in this recipe's
+    # config directory, because Drupal 12 no longer has it in the User module.
     display_builder:
       - display_builder.profile.default
       - filter.format.display_builder_html
-    user:
-      - views.view.who_s_online
   actions:
     # The Dashboards toolbar tab opens the dashboard with the lowest weight the
     # user can view. Webmaster (-20) is the default of site administrators,
