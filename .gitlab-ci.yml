@@ -15,7 +15,7 @@ include:
       - '/includes/include.drupalci.workflows.yml'
 
 variables:
-  _TARGET_PHP: '8.4'
+  _TARGET_PHP: '8.5'
   DRUPAL_CORE: &drupal_core '11.4.x-dev'
   # No PHP, JavaScript, CSS or PHPUnit tests here: the recipe YAML is checked
   # by applying the recipe.
